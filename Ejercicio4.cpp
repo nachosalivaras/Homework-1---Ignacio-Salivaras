@@ -4,22 +4,6 @@
 using namespace std;
 #include <chrono>
 
-bool sonIguales(string palabra1, string palabra2){
-    if (palabra1.size() != palabra2.size()){
-        return false;
-    }
-
-    if (palabra1.empty()) {  
-        return true;
-    }
-    if (palabra1[0] != palabra2[0]) {  
-        return false;
-    }
-    return sonIguales(palabra1.substr(1), palabra2.substr(1));
-
-
-}
-
 constexpr bool sonIgualesConstexpr(const char* palabra1, const char* palabra2) {
     // Si ambos caracteres actuales son nulos, significa que llegamos al final y son iguales
     if (*palabra1 == '\0' && *palabra2 == '\0') {
@@ -60,7 +44,10 @@ int main(){
     auto elapsedTime1 = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime1 - startTime1);
 
     std::cout << "Tiempo de ejecución con función normal: " << elapsedTime1.count() << " nanosegundos" << std::endl;
-
+    if (resultado1) 
+    std::cout << "Son iguales" << std::endl;
+    else 
+    std::cout << "Son diferentes" << std::endl;
 
 
     constexpr bool resultadoConstexpr = sonIgualesConstexpr("hola", "hola"); // Literal → se evalúa en compilación
@@ -71,7 +58,10 @@ int main(){
     auto elapsedTime2 = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime2 - startTime2);
 
     std::cout << "Tiempo de ejecución tras comparación en compilación: " << elapsedTime2.count() << " nanosegundos" << std::endl;
-
+    if (dummy) 
+    std::cout << "Resultado de compilación: Iguales" << std::endl;
+    else 
+    std::cout << "Resultado de compilación: Diferentes" << std::endl;
 
     return 0;
 }
