@@ -43,11 +43,11 @@ int main(){
     auto endTime1 = std::chrono::high_resolution_clock::now();
     auto elapsedTime1 = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime1 - startTime1);
 
-    std::cout << "Tiempo de ejecución con función normal: " << elapsedTime1.count() << " nanosegundos" << std::endl;
+    cout << "Tiempo de ejecución con función normal: " << elapsedTime1.count() << " nanosegundos" << std::endl;
     if (resultado1) 
-    std::cout << "Son iguales" << std::endl;
+    cout << "Resultado: Iguales" << endl;
     else 
-    std::cout << "Son diferentes" << std::endl;
+    cout << "Resultado: Diferentes" << endl;
 
 
     constexpr bool resultadoConstexpr = sonIgualesConstexpr("hola", "hola"); // Literal → se evalúa en compilación
@@ -59,9 +59,9 @@ int main(){
 
     std::cout << "Tiempo de ejecución tras comparación en compilación: " << elapsedTime2.count() << " nanosegundos" << std::endl;
     if (dummy) 
-    std::cout << "Resultado de compilación: Iguales" << std::endl;
+    std::cout << "Resultado: Iguales" << endl;
     else 
-    std::cout << "Resultado de compilación: Diferentes" << std::endl;
+    std::cout << "Resultado: Diferentes" << endl;
 
     return 0;
 }
