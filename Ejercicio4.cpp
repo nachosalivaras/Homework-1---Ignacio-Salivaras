@@ -4,6 +4,25 @@
 using namespace std;
 #include <chrono>
 
+
+// COMENTARIO DE MI ELECCION Y RESUMEN DEL PROCESO:
+/*
+En mi primera función no sabía si utilizar `const char*` o `std::string` para realizar la comparación 
+entre las dos palabras. Analicé cuál era más conveniente en cuanto a tiempo de compilación y tiempo 
+de ejecución. Llegué a la conclusión de que era mejor usar `const char*`, ya que permite hacer la comparación 
+en tiempo de compilación, porque no utiliza memoria dinámica como `std::string`. 
+
+Analizando los nanosegundos, el tiempo de compilación es mucho más rápido que el tiempo de ejecución. 
+También, desde el punto de vista de la recursividad, `const char*` es mejor en cuanto al espacio que ocupa 
+en memoria, ya que me permite comparar carácter por carácter en cada llamado a la función. En cambio, 
+`std::string` crea un nuevo objeto en cada llamado a la función, lo que lo hace más pesado en memoria. 
+Además, `std::string` usa memoria dinámica, mientras que `const char*` usa memoria estática. 
+
+Probé mi función que recibe `const char*` y medí cuánto tardaba en comparar las palabras en tiempo 
+de ejecución y en tiempo de compilación, y noté claramente que en tiempo de compilación es mucho más rápido.
+*/
+
+
 constexpr bool sonIgualesConstexpr(const char* palabra1, const char* palabra2) {
     // Si ambos caracteres actuales son nulos, significa que llegamos al final y son iguales
     if (*palabra1 == '\0' && *palabra2 == '\0') {
@@ -19,24 +38,19 @@ constexpr bool sonIgualesConstexpr(const char* palabra1, const char* palabra2) {
 
 
 bool sonIguales(const char* palabra1, const char* palabra2) {
-    // Si ambos caracteres actuales son nulos, significa que llegamos al final y son iguales
     if (*palabra1 == '\0' && *palabra2 == '\0') {
         return true;
     }
-    // Si los caracteres actuales son diferentes, las palabras no son iguales
     if (*palabra1 != *palabra2) {
         return false;
     }
-    // Seguir comparando el siguiente carácter recursivamente
     return sonIguales(palabra1 + 1, palabra2 + 1);
 }
 
 
-
-
 int main(){
-    const char* palabra1 = "hola";
-    const char* palabra2 = "hola";
+    const char* palabra1 = "hola herman como va todo biento";
+    const char* palabra2 = "hola herman como va todo bientoo";
 
     auto startTime1 = std::chrono::high_resolution_clock::now();
     bool resultado1 = sonIguales(palabra1, palabra2);
@@ -50,18 +64,18 @@ int main(){
     cout << "Resultado: Diferentes" << endl;
 
 
-    constexpr bool resultadoConstexpr = sonIgualesConstexpr("hola", "hola"); // Literal → se evalúa en compilación
+    constexpr bool resultadoConstexpr = sonIgualesConstexpr("hola herman como va todo biento", "hola herman como va todo bientoo"); // Literal → se evalúa en compilación
 
     auto startTime2 = std::chrono::high_resolution_clock::now();
     volatile bool dummy = resultadoConstexpr; // Evita que el compilador lo optimice fuera
     auto endTime2 = std::chrono::high_resolution_clock::now();
     auto elapsedTime2 = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime2 - startTime2);
 
-    std::cout << "Tiempo de ejecución tras comparación en compilación: " << elapsedTime2.count() << " nanosegundos" << std::endl;
+    cout << "Tiempo de ejecución tras comparación en compilación: " << elapsedTime2.count() << " nanosegundos" <<endl;
     if (dummy) 
-    std::cout << "Resultado: Iguales" << endl;
+    cout << "Resultado: Iguales" << endl;
     else 
-    std::cout << "Resultado: Diferentes" << endl;
+    cout << "Resultado: Diferentes" << endl;
 
     return 0;
 }
