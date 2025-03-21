@@ -33,17 +33,19 @@ constexpr bool sonIgualesConstexpr(const char* palabra1, const char* palabra2) {
     return sonIgualesConstexpr(palabra1 + 1, palabra2 + 1);
 }
 
+void miprocesoamedir(){
+    const char* palabra1 = "hola" ;
+    const char* palabra2 = "hola" ;
+    constexpr bool resultado = sonIgualesConstexpr("Hola mundo", "Hola mundo");
+    sonIgualesConstexpr(palabra1,palabra2);
+}
+
 
 
 
 int main(){
-    string palabra1 = "hola";
-    string palabra2= "hola";
-   // const char* palabra1_ = "hola";
-   // const char* palabra2_ = "hola";
-   // constexpr bool resultado = sonIgualesConstexpr("Hola mundo", "Hola mundo");
     auto startTime = std::chrono::high_resolution_clock::now();
-    sonIguales(palabra1, palabra2);
+    miprocesoamedir();
     auto endTime = std::chrono::high_resolution_clock::now();
     auto elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
     endTime - startTime);
