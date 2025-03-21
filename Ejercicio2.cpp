@@ -4,6 +4,19 @@
 
 using namespace std;
 
+
+// COMENTARIO GENERAL PROCESO E IMPLEMENTACION:
+/*
+Para este ejercicio tuve muchas ideas sobre cómo encararlo. Primero creé un diccionario, pero no 
+terminó de convencerme la idea, ya que quería poder pasar directamente el evento como parámetro, 
+y no un `int` que indicara el tipo de mensaje, ya que eso requería muchos `if` para buscar cada
+mensaje en el diccionario. 
+
+Luego se me ocurrió utilizar `try` y `catch` para intentar capturar el error en tiempo de ejecución 
+y probar la funcionalidad de mis funciones.
+*/
+
+
 //Ejercicio 2 a)
 
 enum TipoEvento {
@@ -30,7 +43,7 @@ string NombreEvento(TipoEvento evento) {
 
 void logMessage(string mensaje, TipoEvento evento){
     
-    ofstream outFile("logMessagge.txt");
+    ofstream outFile("logMessagge.txt", ios::app);
     if (outFile.is_open()) { 
     outFile << "[" << NombreEvento(evento) << "]" << " " << "<" << mensaje<< ">"<< endl;
     outFile.close();
@@ -44,7 +57,7 @@ void logMessage(string mensaje, TipoEvento evento){
 //ii 
 
 void logMessage(string Mensage_de_Error, string Archivo, int Línea_de_Código){
-    ofstream outFile("logMessagge.txt");
+    ofstream outFile("logMessagge.txt", ios::app);
     if (outFile.is_open()) { 
     outFile << " " << "<" << Mensage_de_Error << "> " 
     << "Archivo: " << Archivo << ", Línea: " 
@@ -56,7 +69,7 @@ void logMessage(string Mensage_de_Error, string Archivo, int Línea_de_Código){
 
 //iii.
 void logMessage(string Mensaje_De_Acceso, string Nombre_de_Usuario){
-    ofstream outFile("logMessagge.txt");
+    ofstream outFile("logMessagge.txt", ios::app);
     if (outFile.is_open()) { 
     outFile << "[" << NombreEvento(SECURITY) <<  "] " << "<" << Mensaje_De_Acceso << "> " 
     << "Usuario: " << Nombre_de_Usuario << endl;
@@ -87,6 +100,9 @@ int verificafuncionalidad(){
 
 
 int main(){
+    logMessage("Error de sintaxis", WARNING);
+    logMessage("Error matematico", "Realizando operaciones", 125);
+    logMessage("Ingrese su usuario", "Nacho");
     verificafuncionalidad();
     return 0;
 }

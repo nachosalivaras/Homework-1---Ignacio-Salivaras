@@ -4,6 +4,19 @@
 #include <memory>
 using namespace std;
 
+//COMENTARIO GENERAL PROCESO E IMPLEMENTACION:
+
+/*
+Para implementar mis funciones sobre una lista simplemente enlazada, primero hice un `struct` de nodo 
+y un `struct` de lista que simulaba una clase. Sin embargo, luego leí el correo que aclaraba que esa 
+no era la idea de la consigna. 
+
+Entonces, lo que hice fue modificar mis funciones para que reciban la dirección de memoria del `head`, 
+y a partir de ahí las fui recorriendo y modificando el `head` para poder realizar las inserciones 
+y eliminaciones. Contemplé todos los casos para evitar errores y los probé con distintos tests.
+*/
+
+
 struct Node{
     int data;
     shared_ptr<Node> next;
