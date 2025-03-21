@@ -49,8 +49,8 @@ bool sonIguales(const char* palabra1, const char* palabra2) {
 
 
 int main(){
-    const char* palabra1 = "hola herman como va todo biento";
-    const char* palabra2 = "hola herman como va todo bientoo";
+    const char* palabra1 = "Hola ¿como va? ¿todo bien?";
+    const char* palabra2 = "Hola ¿como va? ¿todo bienn?";
 
     auto startTime1 = std::chrono::high_resolution_clock::now();
     bool resultado1 = sonIguales(palabra1, palabra2);
@@ -64,7 +64,7 @@ int main(){
     cout << "Resultado: Diferentes" << endl;
 
 
-    constexpr bool resultadoConstexpr = sonIgualesConstexpr("hola herman como va todo biento", "hola herman como va todo bientoo"); // Literal → se evalúa en compilación
+    constexpr bool resultadoConstexpr = sonIgualesConstexpr("Hola ¿como va? ¿todo bienn?", "Hola ¿como va? ¿todo bien?"); // Literal → se evalúa en compilación
 
     auto startTime2 = std::chrono::high_resolution_clock::now();
     volatile bool dummy = resultadoConstexpr; // Evita que el compilador lo optimice fuera
