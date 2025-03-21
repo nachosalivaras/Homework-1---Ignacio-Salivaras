@@ -5,6 +5,12 @@
 using namespace std;
 
 
+// COMENTARIO GENERAL PROCESO E IMPLEMENTACION:
+/*
+En este ejercicio utilicé el contenedor `vector` y, para imprimir la matriz con un solo `for`, 
+usé unos índices que verifiqué y funcionan correctamente para todos los casos.
+*/
+
 //Ejercicio 1 a)
 
 vector<vector<int>> matriz (int n){
